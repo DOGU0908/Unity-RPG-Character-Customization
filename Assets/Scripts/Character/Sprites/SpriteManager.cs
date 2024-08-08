@@ -7,14 +7,39 @@ using UnityEngine.Rendering;
 public class SpriteManager : MonoBehaviour
 {
     // body sprite renderer
-    [SerializeField] private SpriteRenderer headSprite;
-    [SerializeField] private SpriteRenderer torsoSprite;
+    [SerializeField] private SpriteRenderer[] bodySprites;
+    
+    // body color
+    [SerializeField] private Color bodyColor = new Color(1.0f, 0.878f, 0.741f, 1.0f);
+    public Color BodyColor
+    {
+        get => bodyColor;
+        set
+        {
+            bodyColor = value;
+            
+            ApplyColorToBodySprite();
+        }
+    }
+    
+    // body parameter
+    private static readonly Vector3 BodyScale = Vector3.one;
+
+    private void Start()
+    {
+        ApplyColorToBodySprite();
+    }
 
     public void Flip(bool isFacingLeft)
     {
-        Vector3 localScale = Vector3.one;
-        localScale.x *= isFacingLeft ? -1 : 1;
+        transform.localScale = new Vector3(isFacingLeft ? -BodyScale.x : BodyScale.x, BodyScale.y, BodyScale.z);
+    }
 
-        transform.localScale = localScale;
+    private void ApplyColorToBodySprite()
+    {
+        foreach (SpriteRenderer bodySprite in bodySprites)
+        {
+            bodySprite.color = bodyColor;
+        }
     }
 }

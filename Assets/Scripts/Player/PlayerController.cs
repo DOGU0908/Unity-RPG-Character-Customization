@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     
     // animation
     [SerializeField] private Animator animator;
-    private readonly int _isMoveHash = Animator.StringToHash("IsMove");
+    private static readonly int IsMoveHash = Animator.StringToHash("IsMove");
     
     // sprite control
     [SerializeField] private SpriteManager spriteManager;
@@ -44,15 +44,16 @@ public class PlayerController : MonoBehaviour
 
         _movement = new Vector3(input.x, 0.0f, input.y).normalized;
         
-        animator.SetBool(_isMoveHash, _movement != Vector3.zero);
+        animator.SetBool(IsMoveHash, _movement != Vector3.zero);
 
-        if (input.x < 0)
+        switch (input.x)
         {
-            spriteManager.Flip(true);
-        }
-        else if (input.x > 0)
-        {
-            spriteManager.Flip(false);
+            case > 0:
+                spriteManager.Flip(false);
+                break;
+            case < 0:
+                spriteManager.Flip(true);
+                break;
         }
     }
 
