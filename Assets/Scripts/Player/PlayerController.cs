@@ -6,14 +6,17 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     // movement
-    [SerializeField] private int speed;
+    [SerializeField] private float walkSpeed = 2.0f;
+    [SerializeField] private float runSpeed = 5.0f;
     private PlayerControls _playerControls;
     private Rigidbody _playerRigidbody;
     private Vector3 _movement;
+    private bool _isRunning;
     
     // animation
     [SerializeField] private Animator animator;
     private static readonly int IsMoveHash = Animator.StringToHash("IsMove");
+    private static readonly int IsRunHash = Animator.StringToHash("IsRun");
     
     // sprite control
     [SerializeField] private SpriteManager spriteManager;
@@ -41,10 +44,12 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Vector2 input = _playerControls.Player.PlayerMovement.ReadValue<Vector2>();
+        _isRunning = _playerControls.Player.Run.IsPressed();
 
         _movement = new Vector3(input.x, 0.0f, input.y).normalized;
         
         animator.SetBool(IsMoveHash, _movement != Vector3.zero);
+        animator.SetBool(IsRunHash, _isRunning);
 
         switch (input.x)
         {
@@ -59,6 +64,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        float speed = _isRunning ? runSpeed : walkSpeed;
         _playerRigidbody.MovePosition(transform.position + _movement * (speed * Time.fixedDeltaTime));
     }
 }
