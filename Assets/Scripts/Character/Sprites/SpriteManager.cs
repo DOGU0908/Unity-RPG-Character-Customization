@@ -1,45 +1,66 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 public class SpriteManager : MonoBehaviour
 {
-    // body sprite renderer
-    [SerializeField] private SpriteRenderer[] bodySprites;
-    
-    // body color
-    [SerializeField] private Color bodyColor = new Color(1.0f, 0.878f, 0.741f, 1.0f);
-    public Color BodyColor
+    // base body sprite renderers
+    [SerializeField] private SpriteRenderer[] bodySpriteRenderers;
+
+    // customizable body sprite renderers
+    [Serializable]
+    private class CustomizableSpriteRenderer
     {
-        get => bodyColor;
-        set
-        {
-            bodyColor = value;
+        [SerializeField] private BodyPartType bodyPartType;
+        public BodyPartType BodyPartType => bodyPartType;
             
-            ApplyColorToBodySprite();
-        }
+        [SerializeField] private SpriteRenderer spriteRenderer;
+        public SpriteRenderer SpriteRenderer => spriteRenderer;
     }
+
+    [SerializeField] private CustomizableSpriteRenderer[] customizableSpriteRenderers;
+    
+    // equipment sprite renderers
+    // TODO
     
     // body parameter
     private static readonly Vector3 BodyScale = Vector3.one;
-
-    private void Start()
-    {
-        ApplyColorToBodySprite();
-    }
 
     public void Flip(bool isFacingLeft)
     {
         transform.localScale = new Vector3(isFacingLeft ? -BodyScale.x : BodyScale.x, BodyScale.y, BodyScale.z);
     }
-
-    private void ApplyColorToBodySprite()
+    public void ChangeBodySprite(BodyPartType bodyPartType, Sprite sprite)
     {
-        foreach (SpriteRenderer bodySprite in bodySprites)
+        GetCustomizableSpriteRenderer(bodyPartType).SpriteRenderer.sprite = sprite;
+    }
+
+    public void ChangeBodyColor(Color color)
+    {
+        foreach (SpriteRenderer spriteRenderer in bodySpriteRenderers)
         {
-            bodySprite.color = bodyColor;
+            spriteRenderer.color = color;
         }
+
+        GetCustomizableSpriteRenderer(BodyPartType.Ear).SpriteRenderer.color = color;
+    }
+
+    public void ChangeHairColor(Color color)
+    {
+        GetCustomizableSpriteRenderer(BodyPartType.Hair).SpriteRenderer.color = color;
+    }
+
+    public void ChangeEyeColor(Color color)
+    {
+        GetCustomizableSpriteRenderer(BodyPartType.Eye).SpriteRenderer.color = color;
+    }
+
+    private CustomizableSpriteRenderer GetCustomizableSpriteRenderer(BodyPartType bodyPartType)
+    {
+        return customizableSpriteRenderers.FirstOrDefault(customizableSpriteRenderer =>
+            customizableSpriteRenderer.BodyPartType == bodyPartType);
     }
 }

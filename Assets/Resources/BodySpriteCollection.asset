@@ -1,0 +1,160 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb6f61c78d8434a4a8df0d442541c584, type: 3}
+  m_Name: BodySpriteCollection
+  m_EditorClassIdentifier: 
+  bodyPartSpriteData:
+  - bodyPartType: 0
+    sprites:
+    - {fileID: 21300000, guid: 4009b5f667118e54d997a0b26c24a5ad, type: 3}
+    - {fileID: 21300000, guid: fdbbc31a62a9ee14da07eb62607d17a6, type: 3}
+    - {fileID: 21300000, guid: ee00bade3a019e548be4f8dde595a120, type: 3}
+    - {fileID: 21300000, guid: ae1d2da015ce97c428f7d928a1d50bf9, type: 3}
+    - {fileID: 21300000, guid: 1026c24c4b3c58847a675a93a1da896f, type: 3}
+    - {fileID: 21300000, guid: 6095b47319e71454591e5e71b8601583, type: 3}
+    - {fileID: 21300000, guid: fb0a897a6850e4d478402ecfff41823b, type: 3}
+    - {fileID: 21300000, guid: f795bda0a16db7e4d8e68cfeb9edb0dc, type: 3}
+    - {fileID: 21300000, guid: f83a9d327474ecf4fbd1e9eb1195c08e, type: 3}
+    - {fileID: 21300000, guid: e6c147e2c4eaaef40adc225f052d176b, type: 3}
+    - {fileID: 21300000, guid: db064229a61617f44a0dc1a33bc94d48, type: 3}
+    - {fileID: 21300000, guid: 5ad2c55939d541c49b8d6f91ddb508d9, type: 3}
+    - {fileID: 21300000, guid: 4456d9fb1823e7e41bb247606315e69e, type: 3}
+    - {fileID: 21300000, guid: accd5e74b520aec43b2e7521c7d715b1, type: 3}
+    - {fileID: 21300000, guid: adb8257247b77d740a555d122ebb5b1c, type: 3}
+    - {fileID: 21300000, guid: 51f85d03180abca42b4ef2335e3be9dc, type: 3}
+    - {fileID: 21300000, guid: 80f0ce6a12faa8d4b8db18aee1cc76eb, type: 3}
+    - {fileID: 21300000, guid: 9c846975994237744a1cfdd6f2affe59, type: 3}
+    - {fileID: 21300000, guid: 914f34850aded4e41a7829385e1d2d21, type: 3}
+    - {fileID: 21300000, guid: ab6d0bca07c3192428d82a9f468b2592, type: 3}
+    - {fileID: 21300000, guid: 3f3b6149f21342a4886d6102e42be472, type: 3}
+    - {fileID: 21300000, guid: 312faa97d86783944bdfd9416d1b9626, type: 3}
+    - {fileID: 21300000, guid: cbcac8a20fe81e841bc5d324e9634aaf, type: 3}
+    - {fileID: 21300000, guid: e5f3c0c187a64f744b6d7e64b45adcc1, type: 3}
+    - {fileID: 21300000, guid: 5fbf5034e63ec344cb4ea66cb06773c2, type: 3}
+    - {fileID: 21300000, guid: 48dc828586fd98a43818b2ce9964ff44, type: 3}
+    - {fileID: 21300000, guid: a57e6138b0501e047b3a64d7c1ee8b0b, type: 3}
+    - {fileID: 21300000, guid: da6b5957bcfd8c84cbe83b3d61aedfc3, type: 3}
+    - {fileID: 21300000, guid: f1537eca60368fa42bc01b4134ee1096, type: 3}
+    - {fileID: 21300000, guid: e0877e47cd9fe0a489418b7902b3026a, type: 3}
+    - {fileID: 21300000, guid: 9c1337c1557947e4d8b7955489923293, type: 3}
+    - {fileID: 21300000, guid: f16cb7b1f38ab1c45bb3ebe8ec40f2c7, type: 3}
+    - {fileID: 21300000, guid: d48e6f7a4a3821e4682a54aff53c8340, type: 3}
+    - {fileID: 21300000, guid: 89acc3e4110406640a1ae87196e1b688, type: 3}
+    - {fileID: 21300000, guid: d83c9bcdf7c7ace468a1c9fbb16d65fc, type: 3}
+    - {fileID: 21300000, guid: 3fabe0116aad0934a859a40c8d1f949c, type: 3}
+    - {fileID: 21300000, guid: d3681b72496fbd44e82b473712df0bae, type: 3}
+    - {fileID: 21300000, guid: 063331bfc58ea2640a759257f06c1999, type: 3}
+    - {fileID: 21300000, guid: dfd18f5921cf1b644b17eeda267fd236, type: 3}
+    - {fileID: 21300000, guid: e42679454af3f334aad1e8a015e07192, type: 3}
+    - {fileID: 21300000, guid: 0a4913f6104c46448a7dbaafef4dc1de, type: 3}
+    - {fileID: 21300000, guid: c4ead27f6b4a6a3499dc1516b6495300, type: 3}
+    - {fileID: 21300000, guid: 05fa2556aa8491b49b075d629737c022, type: 3}
+    - {fileID: 21300000, guid: 9a066bf203a32c14784af80c1bf33e99, type: 3}
+    - {fileID: 21300000, guid: a95aa1352ad36bd49a0b11adc3db740c, type: 3}
+    - {fileID: 21300000, guid: 7a180135b0bcb7549854c8707c04abc3, type: 3}
+    - {fileID: 21300000, guid: 4d77ffa3420ae2b4390f4f845518ead0, type: 3}
+    - {fileID: 21300000, guid: d0419de37654e6645be659e89feb106d, type: 3}
+    - {fileID: 21300000, guid: 3d37d951c830ec647ac1f31cbfee14f4, type: 3}
+    - {fileID: 21300000, guid: 9de8b913ab07b7c4fb4bb79d4139de02, type: 3}
+    - {fileID: 21300000, guid: d204fcd7f1aea31408237f9d20df5ab1, type: 3}
+    - {fileID: 21300000, guid: 6981d29e5ed05234297a1d691ae3d0a7, type: 3}
+    - {fileID: 21300000, guid: 7744ba3be13e06c4c8a093fcbcc8d215, type: 3}
+    - {fileID: 21300000, guid: 8a3dc422a5f3b8246b4ef842176163f0, type: 3}
+    - {fileID: 21300000, guid: 6e3452a080c6fef4ebe61023e0689e8b, type: 3}
+    - {fileID: 21300000, guid: 31f484df28eb6f94faeccc09e9d37aac, type: 3}
+  - bodyPartType: 1
+    sprites:
+    - {fileID: 21300000, guid: cf0d8638fc1e34742baf246f59e66e1c, type: 3}
+    - {fileID: 21300000, guid: b929197211cb24b40bebdc2344c42769, type: 3}
+    - {fileID: 21300000, guid: 4bddeb69375c8c5488035cf0a6897de7, type: 3}
+    - {fileID: 21300000, guid: 3669775542723fa4e90b5467ca6259cf, type: 3}
+    - {fileID: 21300000, guid: a70cc7579fca17649975aced4b4dec57, type: 3}
+    - {fileID: 21300000, guid: ffe92e26958a5634e90e772375cbd107, type: 3}
+    - {fileID: 21300000, guid: 1012bd9d93c189748af7923f66386a11, type: 3}
+    - {fileID: 21300000, guid: 62a639c8997c72e43acb4ff7c5c32584, type: 3}
+    - {fileID: 21300000, guid: 69fb5aa417922c742820797f21510567, type: 3}
+    - {fileID: 21300000, guid: 8e31e212d12fdc7408a9d07bd0ed2944, type: 3}
+    - {fileID: 21300000, guid: 9150e409492f89f4a92b56d27222398c, type: 3}
+    - {fileID: 21300000, guid: ee4973b6b554339468b3425f1e254fbc, type: 3}
+    - {fileID: 21300000, guid: 780888b985bd5b04cb7295a5d3c1abf3, type: 3}
+    - {fileID: 21300000, guid: d113db5bf56e64b4cac43555cfaa2062, type: 3}
+    - {fileID: 21300000, guid: 8511bd40546362f4cab321bcaebe58af, type: 3}
+    - {fileID: 21300000, guid: ae41a3d0b8bd39a4e8d5df7d5290aa0a, type: 3}
+    - {fileID: 21300000, guid: d6f3bd656a2847e458c3ba5e25e4f7fa, type: 3}
+  - bodyPartType: 2
+    sprites:
+    - {fileID: 21300000, guid: b7dbd1928db38e946a5a13aad87e04d8, type: 3}
+    - {fileID: 21300000, guid: 77729a2918372314aa96aac766bb4609, type: 3}
+    - {fileID: 21300000, guid: 943a6498f50a7164e82908a9569f1ae5, type: 3}
+    - {fileID: 21300000, guid: d5b302e603173b94f8bf0d68bba0b271, type: 3}
+    - {fileID: 21300000, guid: 86ef98f4a6952bf44b09fae3615efd51, type: 3}
+    - {fileID: 21300000, guid: 8c565ddf86699114592a80aa729562a7, type: 3}
+  - bodyPartType: 3
+    sprites:
+    - {fileID: 21300000, guid: 5d9fe2d2dda845d4ca682a2bafaa94eb, type: 3}
+    - {fileID: 21300000, guid: e40fb252761933a479e78d13f7466ebb, type: 3}
+  - bodyPartType: 4
+    sprites:
+    - {fileID: 21300000, guid: f3a8107c854c4ba4684d741a1fc6c248, type: 3}
+    - {fileID: 21300000, guid: 21a07a314161b694b8428c05a92cc05d, type: 3}
+    - {fileID: 21300000, guid: de39e643323504b45bbec9928ca654eb, type: 3}
+    - {fileID: 21300000, guid: a5fffc2555be35c4185a11df844c1dc6, type: 3}
+    - {fileID: 21300000, guid: d483b3439e2359347b67f40866f6aa04, type: 3}
+    - {fileID: 21300000, guid: 88f8d610a8b077b4b9696459c4290e33, type: 3}
+    - {fileID: 21300000, guid: 23faea07f59f4d14abc2ce38472a1190, type: 3}
+    - {fileID: 21300000, guid: 4f6118c34f0d3f04ba24d6b25f20935f, type: 3}
+    - {fileID: 21300000, guid: 8b6f036a7642fdf48815c5112ff4e2be, type: 3}
+    - {fileID: 21300000, guid: f236091ee3a449f43ac408ae9f81fe2a, type: 3}
+    - {fileID: 21300000, guid: 65e8346d94c36f445bd80d3372b2a3e3, type: 3}
+    - {fileID: 21300000, guid: 9ba11ff109031d34396abdf834a45036, type: 3}
+    - {fileID: 21300000, guid: 6b641f7d91f15544f89d921449fa4596, type: 3}
+    - {fileID: 21300000, guid: 32104f45c64a65f4da13e5417b6abc3e, type: 3}
+  skinColorData:
+  - color: {r: 1, g: 0.9, b: 0.8, a: 1}
+    name: Pale
+  - color: {r: 1, g: 0.87, b: 0.75, a: 1}
+    name: Light
+  - color: {r: 1, g: 0.8, b: 0.6, a: 1}
+    name: Fair
+  - color: {r: 0.87, g: 0.72, b: 0.53, a: 1}
+    name: Medium
+  - color: {r: 0.76, g: 0.6, b: 0.42, a: 1}
+    name: Olive
+  - color: {r: 0.55, g: 0.37, b: 0.26, a: 1}
+    name: Dark
+  baseColorData:
+  - color: {r: 0.6, g: 0.3, b: 0.1, a: 1}
+    name: Brown
+  - color: {r: 0.4, g: 0.2, b: 0.1, a: 1}
+    name: Dark Brown
+  - color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    name: Grey
+  - color: {r: 0, g: 0, b: 0, a: 1}
+    name: Black
+  - color: {r: 0.1, g: 0.3, b: 0.9, a: 1}
+    name: Blue
+  - color: {r: 0.53, g: 0.81, b: 0.98, a: 1}
+    name: Sky Blue
+  - color: {r: 0.1, g: 0.7, b: 0.3, a: 1}
+    name: Green
+  - color: {r: 0.56, g: 0.93, b: 0.56, a: 1}
+    name: Light Green
+  - color: {r: 0.4, g: 0.2, b: 0.5, a: 1}
+    name: Purple
+  - color: {r: 0.7, g: 0.2, b: 0.2, a: 1}
+    name: Red
+  - color: {r: 1, g: 0.65, b: 0, a: 1}
+    name: Orange
+  - color: {r: 0.9, g: 0.9, b: 0.3, a: 1}
+    name: Yellow
+  - color: {r: 1, g: 1, b: 1, a: 1}
+    name: White
