@@ -32,7 +32,6 @@ public class PartyManagerSingleton : MonoBehaviour
         if (_battleMemberIndex.Count < MaxBattleMemberCount)
         {
             _battleMemberIndex.Add(_companionList.Count - 1);
-            Debug.Log(_companionList.Count - 1);
         }
     }
 

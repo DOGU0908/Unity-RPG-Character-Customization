@@ -184,6 +184,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341716a9245cca04ebe757cb8887ac9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  battleSceneIndex: 0
+  isBattleEncounterEnabled: 1
 --- !u!4 &297055058
 Transform:
   m_ObjectHideFlags: 0

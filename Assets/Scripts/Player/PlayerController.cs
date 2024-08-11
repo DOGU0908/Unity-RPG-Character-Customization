@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,6 +22,12 @@ public class PlayerController : MonoBehaviour
     // sprite control
     [SerializeField] private SpriteManager spriteManager;
     
+    // enemy encounter
+    private Vector3 _lastPosition;
+    private float _distanceTraveled = 0.0f;
+    private const float EncounterCheckDistance = 5.0f;
+    private const float EncounterProbability = 0.2f;
+    
     private void Awake()
     {
         _playerControls = new PlayerControls();
@@ -39,10 +46,12 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _playerRigidbody = gameObject.GetComponent<Rigidbody>();
+        _lastPosition = transform.position;
     }
     
     private void Update()
     {
+        // movement
         Vector2 input = _playerControls.Player.PlayerMovement.ReadValue<Vector2>();
         _isRunning = _playerControls.Player.Run.IsPressed();
 
@@ -60,11 +69,32 @@ public class PlayerController : MonoBehaviour
                 spriteManager.Flip(true);
                 break;
         }
+
+        if (FieldManager.Instance.IsBattleEncounterEnabled)
+        {
+            CheckBattleEncounter();
+        }
     }
 
     private void FixedUpdate()
     {
         float speed = _isRunning ? runSpeed : walkSpeed;
         _playerRigidbody.MovePosition(transform.position + _movement * (speed * Time.fixedDeltaTime));
+    }
+
+    private void CheckBattleEncounter()
+    {
+        _distanceTraveled += Vector3.Distance(transform.position, _lastPosition);
+        _lastPosition = transform.position;
+
+        if (_distanceTraveled >= EncounterCheckDistance)
+        {
+            _distanceTraveled = 0.0f;
+
+            if (Random.Range(0.0f, 1.0f) < EncounterProbability)
+            {
+                Debug.Log("Battle Encounter");
+            }
+        }
     }
 }
