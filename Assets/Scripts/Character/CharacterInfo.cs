@@ -40,8 +40,10 @@ public class CharacterInfo
     // TODO
     
     // base character prefab
-    private static GameObject baseCharacterPrefab = Resources.Load<GameObject>("Prefabs/Character/CharacterBody");
-    // todo: add instantiating method
+    public static readonly GameObject BaseCharacterBattlePrefab =
+        Resources.Load<GameObject>("Prefabs/Character/BattleCharacterBody");
+    public static readonly GameObject BaseCharacterFieldPrefab =
+        Resources.Load<GameObject>("Prefabs/Character/FieldCharacterBody");
     
     private static Func<int, int, int> _clampIndex = (index, maxValue) => Mathf.Clamp(index, 0, maxValue);
     
@@ -51,5 +53,26 @@ public class CharacterInfo
         this.hairColorIndex = hairColorIndex;
         this.eyeColorIndex = eyeColorIndex;
         this.skinColorIndex = skinColorIndex;
+    }
+
+    public void ApplyBodyAppearance(SpriteManager spriteManager)
+    {
+        if (spriteManager == null)
+        {
+            return;
+        }
+        
+        foreach (BodyPart bodyPart in bodyParts)
+        {
+            spriteManager.ChangeBodySprite(bodyPart.BodyPartType,
+                BodySpriteCollection.Instance.GetSprite(bodyPart.BodyPartType, bodyPart.Index));
+        }
+
+        spriteManager.ChangeHairColor(BodySpriteCollection.Instance.GetColorData(ColorType.Base, hairColorIndex)
+            .Color);
+        spriteManager.ChangeEyeColor(BodySpriteCollection.Instance.GetColorData(ColorType.Base, eyeColorIndex)
+            .Color);
+        spriteManager.ChangeBodyColor(BodySpriteCollection.Instance.GetColorData(ColorType.Skin, skinColorIndex)
+            .Color);
     }
 }

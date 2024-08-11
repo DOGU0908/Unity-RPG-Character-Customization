@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PartyManager : MonoBehaviour
+public class PartyManagerSingleton : MonoBehaviour
 {
-    public static PartyManager Instance { get; private set; }
+    public static PartyManagerSingleton Instance { get; private set; }
     
     private readonly List<CharacterInfo> _companionList = new();
-    private readonly List<CharacterInfo> _battleMemberList = new();
+    private readonly List<int> _battleMemberIndex = new();
     
     private const int MaxBattleMemberCount = 4;
     
@@ -29,11 +29,15 @@ public class PartyManager : MonoBehaviour
     {
         _companionList.Add(characterInfo);
 
-        if (_battleMemberList.Count < MaxBattleMemberCount)
+        if (_battleMemberIndex.Count < MaxBattleMemberCount)
         {
-            _battleMemberList.Add(characterInfo);
+            _battleMemberIndex.Add(_companionList.Count - 1);
+            Debug.Log(_companionList.Count - 1);
         }
-        
-        Debug.Log(_battleMemberList.Count);
+    }
+
+    public CharacterInfo GetPartyMember(int index)
+    {
+        return _companionList[Mathf.Clamp(index, 0, _companionList.Count - 1)];
     }
 }

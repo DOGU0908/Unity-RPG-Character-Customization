@@ -135,7 +135,7 @@ public class CharacterCustomization : MonoBehaviour
             CharacterInfo newCharacterInfo = new CharacterInfo(bodyParts, hairColorCustomizer.Index,
                 eyeColorCustomizer.Index, skinColorCustomizer.Index);
 
-            PartyManager.Instance.AddPartyMember(newCharacterInfo);
+            MainMenuManager.Instance.ConfirmCustomization(newCharacterInfo);
         });
     }
 
