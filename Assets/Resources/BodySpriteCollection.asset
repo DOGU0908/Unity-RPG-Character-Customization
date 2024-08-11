@@ -100,8 +100,8 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 8c565ddf86699114592a80aa729562a7, type: 3}
   - bodyPartType: 3
     sprites:
-    - {fileID: 21300000, guid: 5d9fe2d2dda845d4ca682a2bafaa94eb, type: 3}
     - {fileID: 21300000, guid: e40fb252761933a479e78d13f7466ebb, type: 3}
+    - {fileID: 21300000, guid: 5d9fe2d2dda845d4ca682a2bafaa94eb, type: 3}
   - bodyPartType: 4
     sprites:
     - {fileID: 21300000, guid: f3a8107c854c4ba4684d741a1fc6c248, type: 3}
