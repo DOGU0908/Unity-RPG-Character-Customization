@@ -124,11 +124,11 @@ public class CharacterCustomization : MonoBehaviour
         
         confirmButton.onClick.AddListener(() =>
         {
-            CharacterInfo.BodyPart[] bodyParts = new CharacterInfo.BodyPart[bodySpriteCustomizers.Length];
+            BodyPart[] bodyParts = new BodyPart[bodySpriteCustomizers.Length];
 
             for (int i = 0; i < bodySpriteCustomizers.Length; ++i)
             {
-                bodyParts[i] = new CharacterInfo.BodyPart(bodySpriteCustomizers[i].BodyPartType,
+                bodyParts[i] = new BodyPart(bodySpriteCustomizers[i].BodyPartType,
                     bodySpriteCustomizers[i].Index);
             }
 
