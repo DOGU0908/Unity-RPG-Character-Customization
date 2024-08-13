@@ -48,16 +48,6 @@ public class BodySpriteCollection : ScriptableObject
     }
     
     // body colors
-    [Serializable]
-    public struct ColorData
-    {
-        [SerializeField] private Color color;
-        public Color Color => color;
-
-        [SerializeField] private string name;
-        public string Name => name;
-    }
-
     [SerializeField] private ColorData[] skinColorData;
     [SerializeField] private ColorData[] baseColorData;
 
@@ -105,4 +95,14 @@ public enum ColorType
 {
     Skin,
     Base
+}
+
+[Serializable]
+public struct ColorData
+{
+    [SerializeField] private Color color;
+    public Color Color => color;
+
+    [SerializeField] private string name;
+    public string Name => name;
 }

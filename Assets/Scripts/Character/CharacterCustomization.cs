@@ -118,9 +118,9 @@ public class CharacterCustomization : MonoBehaviour
             bodySpriteCustomizer.Initialize(ChangeDisplayCharacterSprite);
         }
         
-        hairColorCustomizer.Initialize(spriteManager.ChangeHairColor);
-        eyeColorCustomizer.Initialize(spriteManager.ChangeEyeColor);
-        skinColorCustomizer.Initialize(spriteManager.ChangeBodyColor);
+        hairColorCustomizer.Initialize(spriteManager.SetHairColor);
+        eyeColorCustomizer.Initialize(spriteManager.SetEyeColor);
+        skinColorCustomizer.Initialize(spriteManager.SetBodyColor);
         
         confirmButton.onClick.AddListener(() =>
         {
@@ -141,6 +141,6 @@ public class CharacterCustomization : MonoBehaviour
 
     private void ChangeDisplayCharacterSprite(BodyPartType bodyPartType, int index)
     {
-        spriteManager.ChangeBodySprite(bodyPartType, BodySpriteCollection.Instance.GetSprite(bodyPartType, index));
+        spriteManager.SetBodySprite(bodyPartType, BodySpriteCollection.Instance.GetSprite(bodyPartType, index));
     }
 }

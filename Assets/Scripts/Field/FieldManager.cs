@@ -34,12 +34,7 @@ public class FieldManager : MonoBehaviour
 
         if (playerCharacterInfo != null)
         {
-            GameObject playerCharacter = Object.Instantiate(CharacterInfo.BaseCharacterFieldPrefab,
-                PlayerDataManagerSingleton.Instance.PlayerLastLocation, Quaternion.identity);
-
-            SpriteManager spriteManager = playerCharacter.GetComponent<SpriteManager>();
-            
-            playerCharacterInfo.ApplyBodyAppearance(spriteManager);
+            playerCharacterInfo.InstantiateFieldCharacter(PlayerDataManagerSingleton.Instance.PlayerLastLocation);
         }
     }
 }

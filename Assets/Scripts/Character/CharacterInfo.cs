@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 [Serializable]
 public class CharacterInfo
@@ -38,12 +39,12 @@ public class CharacterInfo
     private static readonly int LevelUpStatPoints = 3;
     
     // equipments
-    // TODO
+    [SerializeField] private int weaponId = 44;
     
     // base character prefab
-    public static readonly GameObject BaseCharacterBattlePrefab =
+    private static readonly GameObject BaseCharacterBattlePrefab =
         Resources.Load<GameObject>("Prefabs/Character/BattleCharacterBody");
-    public static readonly GameObject BaseCharacterFieldPrefab =
+    private static readonly GameObject BaseCharacterFieldPrefab =
         Resources.Load<GameObject>("Prefabs/Character/FieldCharacterBody");
     
     public CharacterInfo(BodyPart[] bodyParts, int hairColorIndex, int eyeColorIndex, int skinColorIndex)
@@ -54,8 +55,23 @@ public class CharacterInfo
         this.skinColorIndex = skinColorIndex;
     }
 
+    // instantiate prefab
+    public GameObject InstantiateFieldCharacter(Vector3 spawnPosition)
+    {
+        GameObject playerCharacter = Object.Instantiate(CharacterInfo.BaseCharacterFieldPrefab,
+            PlayerDataManagerSingleton.Instance.PlayerLastLocation, Quaternion.identity);
+
+        SpriteManager spriteManager = playerCharacter.GetComponent<SpriteManager>();
+            
+        ApplyBodyAppearance(spriteManager);
+        
+        ApplyWeaponAppearance(spriteManager, WeaponCollection.Instance.GetWeapon(weaponId).Sprite);
+
+        return playerCharacter;
+    }
+    
     // body
-    public void ApplyBodyAppearance(SpriteManager spriteManager)
+    private void ApplyBodyAppearance(SpriteManager spriteManager)
     {
         if (spriteManager == null)
         {
@@ -64,15 +80,15 @@ public class CharacterInfo
         
         foreach (BodyPart bodyPart in bodyParts)
         {
-            spriteManager.ChangeBodySprite(bodyPart.BodyPartType,
+            spriteManager.SetBodySprite(bodyPart.BodyPartType,
                 BodySpriteCollection.Instance.GetSprite(bodyPart.BodyPartType, bodyPart.Index));
         }
 
-        spriteManager.ChangeHairColor(BodySpriteCollection.Instance.GetColorData(ColorType.Base, hairColorIndex)
+        spriteManager.SetHairColor(BodySpriteCollection.Instance.GetColorData(ColorType.Base, hairColorIndex)
             .Color);
-        spriteManager.ChangeEyeColor(BodySpriteCollection.Instance.GetColorData(ColorType.Base, eyeColorIndex)
+        spriteManager.SetEyeColor(BodySpriteCollection.Instance.GetColorData(ColorType.Base, eyeColorIndex)
             .Color);
-        spriteManager.ChangeBodyColor(BodySpriteCollection.Instance.GetColorData(ColorType.Skin, skinColorIndex)
+        spriteManager.SetBodyColor(BodySpriteCollection.Instance.GetColorData(ColorType.Skin, skinColorIndex)
             .Color);
     }
     
@@ -96,6 +112,32 @@ public class CharacterInfo
         baseStats[statType] += StatIncreaseValue;
 
         --_statPoint;
+    }
+    
+    // equipments
+    public Weapon GetEquippedWeapon()
+    {
+        return WeaponCollection.Instance.GetWeapon(weaponId);
+    }
+
+    public void ChangeWeapon(int id, SpriteManager spriteManager)
+    {
+        Weapon newWeapon = WeaponCollection.Instance.GetWeapon(id);
+
+        if (newWeapon == null)
+        {
+            return;
+        }
+        
+        // TODO: change inventory
+
+        weaponId = id;
+        ApplyWeaponAppearance(spriteManager, newWeapon.Sprite);
+    }
+
+    private void ApplyWeaponAppearance(SpriteManager spriteManager, Sprite sprite)
+    {
+        spriteManager.SetWeaponSprite(sprite);
     }
 }
 

@@ -24,7 +24,7 @@ public class SpriteManager : MonoBehaviour
     [SerializeField] private CustomizableSpriteRenderer[] customizableSpriteRenderers;
     
     // equipment sprite renderers
-    // TODO
+    [SerializeField] private SpriteRenderer weaponSpriteRenderer;
     
     // body parameter
     private static readonly Vector3 BodyScale = Vector3.one;
@@ -33,12 +33,12 @@ public class SpriteManager : MonoBehaviour
     {
         transform.localScale = new Vector3(isFacingLeft ? -BodyScale.x : BodyScale.x, BodyScale.y, BodyScale.z);
     }
-    public void ChangeBodySprite(BodyPartType bodyPartType, Sprite sprite)
+    public void SetBodySprite(BodyPartType bodyPartType, Sprite sprite)
     {
         GetCustomizableSpriteRenderer(bodyPartType).SpriteRenderer.sprite = sprite;
     }
 
-    public void ChangeBodyColor(Color color)
+    public void SetBodyColor(Color color)
     {
         foreach (SpriteRenderer spriteRenderer in bodySpriteRenderers)
         {
@@ -48,12 +48,12 @@ public class SpriteManager : MonoBehaviour
         GetCustomizableSpriteRenderer(BodyPartType.Ear).SpriteRenderer.color = color;
     }
 
-    public void ChangeHairColor(Color color)
+    public void SetHairColor(Color color)
     {
         GetCustomizableSpriteRenderer(BodyPartType.Hair).SpriteRenderer.color = color;
     }
 
-    public void ChangeEyeColor(Color color)
+    public void SetEyeColor(Color color)
     {
         GetCustomizableSpriteRenderer(BodyPartType.Eye).SpriteRenderer.color = color;
     }
@@ -62,5 +62,10 @@ public class SpriteManager : MonoBehaviour
     {
         return customizableSpriteRenderers.FirstOrDefault(customizableSpriteRenderer =>
             customizableSpriteRenderer.BodyPartType == bodyPartType);
+    }
+
+    public void SetWeaponSprite(Sprite sprite)
+    {
+        weaponSpriteRenderer.sprite = sprite;
     }
 }
