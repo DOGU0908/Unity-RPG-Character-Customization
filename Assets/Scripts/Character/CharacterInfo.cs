@@ -7,6 +7,8 @@ using Object = UnityEngine.Object;
 [Serializable]
 public class CharacterInfo
 {
+    [SerializeField] private int id;
+    
     // body
     [SerializeField] private BodyPart[] bodyParts;
 
@@ -40,6 +42,7 @@ public class CharacterInfo
     
     // equipments
     [SerializeField] private int weaponId = 44;
+    [SerializeField] private int armorId = 8;
     
     // base character prefab
     private static readonly GameObject BaseCharacterBattlePrefab =
@@ -66,6 +69,8 @@ public class CharacterInfo
         ApplyBodyAppearance(spriteManager);
         
         ApplyWeaponAppearance(spriteManager, WeaponCollection.Instance.GetWeapon(weaponId).Sprite);
+
+        ApplyArmorAppearance(spriteManager, ArmorCollection.Instance.GetArmor(armorId).Sprite);
 
         return playerCharacter;
     }
@@ -139,6 +144,11 @@ public class CharacterInfo
     {
         spriteManager.SetWeaponSprite(sprite);
     }
+
+    private void ApplyArmorAppearance(SpriteManager spriteManager, ArmorSprite armorSprite)
+    {
+        spriteManager.SetArmorSprite(armorSprite);
+    }
 }
 
 [Serializable]
@@ -163,7 +173,7 @@ public struct BodyPart
 
 public enum StatType
 {
-    MaxHealth,
+    Health,
     Strength,
     Magic,
     Speed,
@@ -175,23 +185,67 @@ public enum StatType
 [Serializable]
 public class StatSet
 {
-    [SerializeField] private int[] stats;
+    [SerializeField] private int health;
+    [SerializeField] private int strength;
+    [SerializeField] private int magic;
+    [SerializeField] private int speed;
+    [SerializeField] private int dexterity;
+    [SerializeField] private int defense;
+    [SerializeField] private int resistance;
 
-    public StatSet(int maxHealth, int strength, int magic, int speed, int dexterity, int defense, int resistance)
+    public StatSet(int health, int strength, int magic, int speed, int dexterity, int defense, int resistance)
     {
-        stats = new int[Enum.GetValues(typeof(StatType)).Length];
-        stats[(int)StatType.MaxHealth] = maxHealth;
-        stats[(int)StatType.Strength] = strength;
-        stats[(int)StatType.Magic] = magic;
-        stats[(int)StatType.Speed] = speed;
-        stats[(int)StatType.Dexterity] = dexterity;
-        stats[(int)StatType.Defense] = defense;
-        stats[(int)StatType.Resistance] = resistance;
+        this.health = health;
+        this.strength = strength;
+        this.magic = magic;
+        this.speed = speed;
+        this.dexterity = dexterity;
+        this.defense = defense;
+        this.resistance = resistance;
     }
 
     public int this[StatType statType]
     {
-        get => stats[(int)statType];
-        set => stats[(int)statType] = value;
+        get
+        {
+            return statType switch
+            {
+                StatType.Health => health,
+                StatType.Strength => strength,
+                StatType.Magic => magic,
+                StatType.Speed => speed,
+                StatType.Dexterity => dexterity,
+                StatType.Defense => defense,
+                StatType.Resistance => resistance,
+                _ => 0,
+            };
+        }
+        set
+        {
+            switch (statType)
+            {
+                case StatType.Health:
+                    health = value;
+                    break;
+                case StatType.Strength:
+                    strength = value;
+                    break;
+                case StatType.Magic:
+                    magic = value;
+                    break;
+                case StatType.Speed:
+                    speed = value;
+                    break;
+                case StatType.Dexterity:
+                    dexterity = value;
+                    break;
+                case StatType.Defense:
+                    defense = value;
+                    break;
+                case StatType.Resistance:
+                    resistance = value;
+                    break;
+            }
+        }
     }
 }

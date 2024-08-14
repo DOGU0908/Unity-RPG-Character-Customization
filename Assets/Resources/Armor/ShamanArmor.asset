@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11946dc461e44c64ba89c7d6cc99be36, type: 3}
+  m_Name: ShamanArmor
+  m_EditorClassIdentifier: 
+  itemName: Shaman Robe
+  id: 67
+  defenseBonus: 0
+  resistanceBonus: 5
+  armorBattleAttribute:
+    avoidChance: 0
+    hitChance: 0
+    criticalChance: 0
+    nonElementDamageBonus: 0
+    fireDamageBonus: 0
+    iceDamageBonus: 0
+    electricDamageBonus: 0
+    lightDamageBonus: 0
+    darkDamageBonus: 5
+  sprite:
+    leftArmArmor: {fileID: 21300004, guid: 5456f3b7a1a23d747b716bb0b0dfa1d7, type: 3}
+    rightArmArmor: {fileID: 21300002, guid: 5456f3b7a1a23d747b716bb0b0dfa1d7, type: 3}
+    fingerArmor: {fileID: 21300022, guid: 5456f3b7a1a23d747b716bb0b0dfa1d7, type: 3}
+    leftForearmArmor: {fileID: 21300010, guid: 5456f3b7a1a23d747b716bb0b0dfa1d7, type: 3}
+    rightForearmArmor: {fileID: 21300008, guid: 5456f3b7a1a23d747b716bb0b0dfa1d7,
+      type: 3}
+    leftHandArmor: {fileID: 21300016, guid: 5456f3b7a1a23d747b716bb0b0dfa1d7, type: 3}
+    rightHandArmor: {fileID: 21300018, guid: 5456f3b7a1a23d747b716bb0b0dfa1d7, type: 3}
+    legArmor: {fileID: 21300012, guid: 5456f3b7a1a23d747b716bb0b0dfa1d7, type: 3}
+    pelvisArmor: {fileID: 21300006, guid: 5456f3b7a1a23d747b716bb0b0dfa1d7, type: 3}
+    shinArmor: {fileID: 21300014, guid: 5456f3b7a1a23d747b716bb0b0dfa1d7, type: 3}
+    torsoArmor: {fileID: 21300000, guid: 5456f3b7a1a23d747b716bb0b0dfa1d7, type: 3}

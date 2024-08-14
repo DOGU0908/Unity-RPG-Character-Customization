@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11946dc461e44c64ba89c7d6cc99be36, type: 3}
+  m_Name: HeavenlyArmor
+  m_EditorClassIdentifier: 
+  itemName: Heavenly Armor
+  id: 43
+  defenseBonus: 6
+  resistanceBonus: 10
+  armorBattleAttribute:
+    avoidChance: 10
+    hitChance: 0
+    criticalChance: 0
+    nonElementDamageBonus: 0
+    fireDamageBonus: 0
+    iceDamageBonus: 0
+    electricDamageBonus: 0
+    lightDamageBonus: 5
+    darkDamageBonus: 0
+  sprite:
+    leftArmArmor: {fileID: -4550084578846169200, guid: ef5f336be11f7f240afea264d339949c,
+      type: 3}
+    rightArmArmor: {fileID: 624974917677838921, guid: ef5f336be11f7f240afea264d339949c,
+      type: 3}
+    fingerArmor: {fileID: 878777441990743753, guid: ef5f336be11f7f240afea264d339949c,
+      type: 3}
+    leftForearmArmor: {fileID: 8477010410430503746, guid: ef5f336be11f7f240afea264d339949c,
+      type: 3}
+    rightForearmArmor: {fileID: 9212712091511837395, guid: ef5f336be11f7f240afea264d339949c,
+      type: 3}
+    leftHandArmor: {fileID: 6787936197531259123, guid: ef5f336be11f7f240afea264d339949c,
+      type: 3}
+    rightHandArmor: {fileID: 9055856234324719921, guid: ef5f336be11f7f240afea264d339949c,
+      type: 3}
+    legArmor: {fileID: -524195514793821918, guid: ef5f336be11f7f240afea264d339949c,
+      type: 3}
+    pelvisArmor: {fileID: -5036632884329809443, guid: ef5f336be11f7f240afea264d339949c,
+      type: 3}
+    shinArmor: {fileID: 5278265719106483438, guid: ef5f336be11f7f240afea264d339949c,
+      type: 3}
+    torsoArmor: {fileID: -2912605832241475739, guid: ef5f336be11f7f240afea264d339949c,
+      type: 3}

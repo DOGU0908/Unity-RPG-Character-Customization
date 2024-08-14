@@ -25,6 +25,18 @@ public class SpriteManager : MonoBehaviour
     
     // equipment sprite renderers
     [SerializeField] private SpriteRenderer weaponSpriteRenderer;
+
+    [Serializable]
+    private class ArmorPartSpriteRenderer
+    {
+        [SerializeField] private ArmorPart armorPart;
+        public ArmorPart ArmorPart => armorPart;
+        
+        [SerializeField] private SpriteRenderer spriteRenderer;
+        public SpriteRenderer SpriteRenderer => spriteRenderer;
+    }
+
+    [SerializeField] private ArmorPartSpriteRenderer[] armorPartSpriteRenderers;
     
     // body parameter
     private static readonly Vector3 BodyScale = Vector3.one;
@@ -67,5 +79,13 @@ public class SpriteManager : MonoBehaviour
     public void SetWeaponSprite(Sprite sprite)
     {
         weaponSpriteRenderer.sprite = sprite;
+    }
+
+    public void SetArmorSprite(ArmorSprite armorSprite)
+    {
+        foreach (ArmorPartSpriteRenderer armorPartSpriteRenderer in armorPartSpriteRenderers)
+        {
+            armorPartSpriteRenderer.SpriteRenderer.sprite = armorSprite[armorPartSpriteRenderer.ArmorPart];
+        }
     }
 }
