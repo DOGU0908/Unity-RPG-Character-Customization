@@ -111,7 +111,14 @@ public class CharacterCustomization : MonoBehaviour
     // display character sprite manager
     [SerializeField] private SpriteManager spriteManager;
     
-    private void Awake()
+    // character base info
+    [SerializeField] private StatSet baseStats;
+    [SerializeField] private int baseLevel;
+    [SerializeField] private int baseWeaponId;
+    [SerializeField] private int baseArmorId;
+    
+    // use Start because display character that stores spriteManager might not be instantiated
+    private void Start()
     {
         foreach (BodySpriteCustomizer bodySpriteCustomizer in bodySpriteCustomizers)
         {
@@ -121,6 +128,9 @@ public class CharacterCustomization : MonoBehaviour
         hairColorCustomizer.Initialize(spriteManager.SetHairColor);
         eyeColorCustomizer.Initialize(spriteManager.SetEyeColor);
         skinColorCustomizer.Initialize(spriteManager.SetBodyColor);
+        
+        spriteManager.SetWeaponSprite(WeaponCollection.Instance.GetWeapon(baseWeaponId).Sprite);
+        spriteManager.SetArmorSprite(ArmorCollection.Instance.GetArmor(baseArmorId).Sprite);
         
         confirmButton.onClick.AddListener(() =>
         {
@@ -133,7 +143,7 @@ public class CharacterCustomization : MonoBehaviour
             }
 
             CharacterInfo newCharacterInfo = new CharacterInfo(bodyParts, hairColorCustomizer.Index,
-                eyeColorCustomizer.Index, skinColorCustomizer.Index);
+                eyeColorCustomizer.Index, skinColorCustomizer.Index, baseStats, baseLevel, baseWeaponId, baseArmorId);
 
             MainMenuManager.Instance.ConfirmCustomization(newCharacterInfo);
         });

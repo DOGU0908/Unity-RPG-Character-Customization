@@ -5166,6 +5166,17 @@ MonoBehaviour:
     colorType: 0
   confirmButton: {fileID: 291378368}
   spriteManager: {fileID: 1605522633}
+  baseStats:
+    health: 27
+    strength: 13
+    magic: 6
+    speed: 8
+    dexterity: 9
+    defense: 6
+    resistance: 6
+  baseLevel: 1
+  baseWeaponId: 44
+  baseArmorId: 58
 --- !u!1 &1483957269
 GameObject:
   m_ObjectHideFlags: 0

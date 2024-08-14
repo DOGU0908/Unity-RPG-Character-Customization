@@ -17,10 +17,10 @@ public class CharacterInfo
     [SerializeField] private int skinColorIndex;
 
     // stats
-    [SerializeField] private StatSet baseStats = new StatSet(27, 13, 6, 8, 9, 6, 6);
+    [SerializeField] private StatSet baseStats;
     private static readonly int StatIncreaseValue = 1;
-    
-    [SerializeField] private int level = 1;
+
+    [SerializeField] private int level;
     private int _exp = 0;
     public int Exp
     {
@@ -41,8 +41,8 @@ public class CharacterInfo
     private static readonly int LevelUpStatPoints = 3;
     
     // equipments
-    [SerializeField] private int weaponId = 44;
-    [SerializeField] private int armorId = 8;
+    [SerializeField] private int weaponId;
+    [SerializeField] private int armorId;
     
     // base character prefab
     private static readonly GameObject BaseCharacterBattlePrefab =
@@ -50,12 +50,17 @@ public class CharacterInfo
     private static readonly GameObject BaseCharacterFieldPrefab =
         Resources.Load<GameObject>("Prefabs/Character/FieldCharacterBody");
     
-    public CharacterInfo(BodyPart[] bodyParts, int hairColorIndex, int eyeColorIndex, int skinColorIndex)
+    public CharacterInfo(BodyPart[] bodyParts, int hairColorIndex, int eyeColorIndex, int skinColorIndex,
+        StatSet baseStats, int level, int weaponId, int armorId)
     {
         this.bodyParts = bodyParts;
         this.hairColorIndex = hairColorIndex;
         this.eyeColorIndex = eyeColorIndex;
         this.skinColorIndex = skinColorIndex;
+        this.baseStats = baseStats;
+        this.level = level;
+        this.weaponId = weaponId;
+        this.armorId = armorId;
     }
 
     // instantiate prefab
