@@ -51,16 +51,6 @@ public class FieldManager : MonoBehaviour
             
             playerCamera.Follow = playerCharacter.transform;
         }
-        
-        // TODO: Erase TEST Inventory
-        PlayerDataManagerSingleton.Instance.Inventory.AddItemToInventory(ItemType.Weapon, 1);
-        PlayerDataManagerSingleton.Instance.Inventory.AddItemToInventory(ItemType.Weapon, 2);
-        PlayerDataManagerSingleton.Instance.Inventory.AddItemToInventory(ItemType.Weapon, 1);
-        PlayerDataManagerSingleton.Instance.Inventory.AddItemToInventory(ItemType.Weapon, 2);
-        PlayerDataManagerSingleton.Instance.Inventory.AddItemToInventory(ItemType.Armor, 1);
-        PlayerDataManagerSingleton.Instance.Inventory.AddItemToInventory(ItemType.Armor, 2);
-        PlayerDataManagerSingleton.Instance.Inventory.AddItemToInventory(ItemType.Armor, 1);
-        PlayerDataManagerSingleton.Instance.Inventory.AddItemToInventory(ItemType.Armor, 2);
     }
 
     public void ResetFieldCharacterSprite()

@@ -147,14 +147,6 @@ public class CharacterCustomization : MonoBehaviour
                 eyeColorCustomizer.Index, skinColorCustomizer.Index, baseStats, baseLevel, baseWeaponId, baseArmorId);
 
             MainMenuManager.Instance.ConfirmCustomization(newCharacterInfo);
-
-            // DELETE
-            for (int i = 0; i < 20; ++i)
-            {
-                CharacterInfo newCharacterInfo1 = new CharacterInfo(baseName, bodyParts, hairColorCustomizer.Index,
-                    eyeColorCustomizer.Index, skinColorCustomizer.Index, new StatSet(1, 1, 1, 1, 1, 1, 1), 1, 44, 58);
-                PartyManagerSingleton.Instance.AddPartyMember(newCharacterInfo1);
-            }
         });
     }
 

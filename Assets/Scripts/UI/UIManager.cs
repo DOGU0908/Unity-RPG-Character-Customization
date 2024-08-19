@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     private UIControls _uiControls;
 
     [SerializeField] private GameObject characterInfoUICanvas;
+    [SerializeField] private GameObject pauseUICanvas;
 
     private CurrentFieldUI _currentFieldUI = CurrentFieldUI.None;
     
@@ -29,6 +30,10 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         characterInfoUICanvas.SetActive(false);
+        
+        pauseUICanvas.SetActive(false);
+        PauseUI pauseUI = pauseUICanvas.GetComponent<PauseUI>();
+        pauseUI.OnResumeButtonClicked += CloseUIScreen;
     }
 
     void Update()
@@ -38,9 +43,16 @@ public class UIManager : MonoBehaviour
             OpenUIScreen(CurrentFieldUI.CharacterInfo);
         }
 
-        if (_uiControls.UI.Cancel.WasPressedThisFrame() && _currentFieldUI != CurrentFieldUI.None)
+        if (_uiControls.UI.Cancel.WasPressedThisFrame())
         {
-            CloseUIScreen();
+            if (_currentFieldUI != CurrentFieldUI.None)
+            {
+                CloseUIScreen();
+            }
+            else
+            {
+                OpenUIScreen(CurrentFieldUI.Pause);
+            }
         }
     }
 
@@ -56,6 +68,9 @@ public class UIManager : MonoBehaviour
             case CurrentFieldUI.CharacterInfo:
                 characterInfoUICanvas.SetActive(true);
                 break;
+            case CurrentFieldUI.Pause:
+                pauseUICanvas.SetActive(true);
+                break;
         }
 
         _currentFieldUI = currentFieldUI;
@@ -69,6 +84,9 @@ public class UIManager : MonoBehaviour
             case CurrentFieldUI.CharacterInfo:
                 characterInfoUICanvas.SetActive(false);
                 break;
+            case CurrentFieldUI.Pause:
+                pauseUICanvas.SetActive(false);
+                break;
         }
 
         _currentFieldUI = CurrentFieldUI.None;
@@ -81,4 +99,7 @@ public enum CurrentFieldUI
 {
     None,
     CharacterInfo,
+    Inventory,
+    BattleMember,
+    Pause,
 }
