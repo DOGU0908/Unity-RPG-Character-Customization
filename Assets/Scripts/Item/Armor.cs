@@ -10,9 +10,12 @@ public class Armor : Item
     public int Id => id;
 
     [SerializeField] private int defenseBonus;
+    public int DefenseBonus => defenseBonus;
     [SerializeField] private int resistanceBonus;
+    public int ResistanceBonus => resistanceBonus;
 
     [SerializeField] private BattleAttribute armorBattleAttribute;
+    public BattleAttribute ArmorBattleAttribute => armorBattleAttribute;
 
     [SerializeField] private ArmorSprite sprite;
     public ArmorSprite Sprite => sprite;

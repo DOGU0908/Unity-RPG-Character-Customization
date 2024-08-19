@@ -7,7 +7,8 @@ using Object = UnityEngine.Object;
 [Serializable]
 public class CharacterInfo
 {
-    [SerializeField] private int id;
+    [SerializeField] private string name;
+    public string Name => name;
     
     // body
     [SerializeField] private BodyPart[] bodyParts;
@@ -18,6 +19,7 @@ public class CharacterInfo
 
     // stats
     [SerializeField] private StatSet baseStats;
+    public StatSet BaseStats => baseStats;
     private static readonly int StatIncreaseValue = 1;
 
     [SerializeField] private int level;
@@ -45,14 +47,17 @@ public class CharacterInfo
     [SerializeField] private int armorId;
     
     // base character prefab
-    private static readonly GameObject BaseCharacterBattlePrefab =
+    public static readonly GameObject BaseCharacterBattlePrefab =
         Resources.Load<GameObject>("Prefabs/Character/BattleCharacterBody");
-    private static readonly GameObject BaseCharacterFieldPrefab =
+    public static readonly GameObject BaseCharacterFieldPrefab =
         Resources.Load<GameObject>("Prefabs/Character/FieldCharacterBody");
+    public static readonly GameObject BaseCharacterUIPrefab =
+        Resources.Load<GameObject>("Prefabs/Character/UICharacterBody");
     
-    public CharacterInfo(BodyPart[] bodyParts, int hairColorIndex, int eyeColorIndex, int skinColorIndex,
+    public CharacterInfo(string name, BodyPart[] bodyParts, int hairColorIndex, int eyeColorIndex, int skinColorIndex,
         StatSet baseStats, int level, int weaponId, int armorId)
     {
+        this.name = name;
         this.bodyParts = bodyParts;
         this.hairColorIndex = hairColorIndex;
         this.eyeColorIndex = eyeColorIndex;
@@ -62,22 +67,14 @@ public class CharacterInfo
         this.weaponId = weaponId;
         this.armorId = armorId;
     }
-
-    // instantiate prefab
-    public GameObject InstantiateFieldCharacter(Vector3 spawnPosition)
+    
+    public void ResetSprite(SpriteManager spriteManager)
     {
-        GameObject playerCharacter = Object.Instantiate(CharacterInfo.BaseCharacterFieldPrefab,
-            PlayerDataManagerSingleton.Instance.PlayerLastLocation, Quaternion.identity);
-
-        SpriteManager spriteManager = playerCharacter.GetComponent<SpriteManager>();
-            
         ApplyBodyAppearance(spriteManager);
         
         ApplyWeaponAppearance(spriteManager, WeaponCollection.Instance.GetWeapon(weaponId).Sprite);
 
         ApplyArmorAppearance(spriteManager, ArmorCollection.Instance.GetArmor(armorId).Sprite);
-
-        return playerCharacter;
     }
     
     // body
@@ -114,7 +111,7 @@ public class CharacterInfo
 
     public void IncreaseStat(StatType statType)
     {
-        if (_statPoint < 1)
+        if (!CanIncreaseStat())
         {
             return;
         }
@@ -123,6 +120,11 @@ public class CharacterInfo
 
         --_statPoint;
     }
+
+    public bool CanIncreaseStat()
+    {
+        return _statPoint >= 1;
+    }
     
     // equipments
     public Weapon GetEquippedWeapon()
@@ -130,24 +132,46 @@ public class CharacterInfo
         return WeaponCollection.Instance.GetWeapon(weaponId);
     }
 
-    public void ChangeWeapon(int id, SpriteManager spriteManager)
+    public void ChangeWeapon(int newWeaponId, SpriteManager spriteManager)
     {
-        Weapon newWeapon = WeaponCollection.Instance.GetWeapon(id);
+        Weapon newWeapon = WeaponCollection.Instance.GetWeapon(newWeaponId);
 
-        if (newWeapon == null)
+        if (newWeapon == null || WeaponCollection.Instance.GetWeapon(weaponId) == null)
         {
             return;
         }
-        
-        // TODO: change inventory
 
-        weaponId = id;
+        PlayerDataManagerSingleton.Instance.Inventory.AddItemToInventory(ItemType.Weapon, weaponId);
+        PlayerDataManagerSingleton.Instance.Inventory.RemoveItemFromInventory(ItemType.Weapon, newWeaponId);
+
+        weaponId = newWeaponId;
         ApplyWeaponAppearance(spriteManager, newWeapon.Sprite);
     }
 
     private void ApplyWeaponAppearance(SpriteManager spriteManager, Sprite sprite)
     {
         spriteManager.SetWeaponSprite(sprite);
+    }
+
+    public Armor GetEquippedArmor()
+    {
+        return ArmorCollection.Instance.GetArmor(armorId);
+    }
+
+    public void ChangeArmor(int newArmorId, SpriteManager spriteManager)
+    {
+        Armor newArmor = ArmorCollection.Instance.GetArmor(newArmorId);
+
+        if (newArmor == null || ArmorCollection.Instance.GetArmor(armorId) == null)
+        {
+            return;
+        }
+
+        PlayerDataManagerSingleton.Instance.Inventory.AddItemToInventory(ItemType.Armor, armorId);
+        PlayerDataManagerSingleton.Instance.Inventory.RemoveItemFromInventory(ItemType.Armor, newArmorId);
+
+        armorId = newArmorId;
+        ApplyArmorAppearance(spriteManager, newArmor.Sprite);
     }
 
     private void ApplyArmorAppearance(SpriteManager spriteManager, ArmorSprite armorSprite)

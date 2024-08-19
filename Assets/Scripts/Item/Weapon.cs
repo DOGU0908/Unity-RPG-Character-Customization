@@ -9,9 +9,13 @@ public class Weapon : Item
     public int Id => id;
     
     [SerializeField] private int damage;
+    public int Damage => damage;
     [SerializeField] private StatType attackStatType;
+    public StatType AttackStatType => attackStatType;
     [SerializeField] private WeaponType weaponType;
+    public WeaponType WeaponType => weaponType;
     [SerializeField] private WeaponElement weaponElement;
+    public WeaponElement WeaponElement => weaponElement;
     
     [SerializeField] private Sprite sprite;
     public Sprite Sprite => sprite;

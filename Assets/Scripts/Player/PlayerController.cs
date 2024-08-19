@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private SpriteManager spriteManager;
     
     // enemy encounter
+    private bool _isCheckBattleEncounter;
     private Vector3 _lastPosition;
     private float _distanceTraveled = 0.0f;
     private const float EncounterCheckDistance = 5.0f;
@@ -47,6 +48,8 @@ public class PlayerController : MonoBehaviour
     {
         _playerRigidbody = gameObject.GetComponent<Rigidbody>();
         _lastPosition = transform.position;
+
+        _isCheckBattleEncounter = FieldManager.Instance.IsBattleEncounterEnabled;
     }
     
     private void Update()
@@ -70,7 +73,7 @@ public class PlayerController : MonoBehaviour
                 break;
         }
 
-        if (FieldManager.Instance.IsBattleEncounterEnabled)
+        if (_isCheckBattleEncounter)
         {
             CheckBattleEncounter();
         }

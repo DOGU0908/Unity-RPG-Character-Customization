@@ -5166,6 +5166,7 @@ MonoBehaviour:
     colorType: 0
   confirmButton: {fileID: 291378368}
   spriteManager: {fileID: 1605522633}
+  baseName: Player
   baseStats:
     health: 27
     strength: 13

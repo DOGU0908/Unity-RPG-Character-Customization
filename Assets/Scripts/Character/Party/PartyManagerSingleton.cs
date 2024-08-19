@@ -10,7 +10,7 @@ public class PartyManagerSingleton : MonoBehaviour
     private readonly List<CharacterInfo> _companionList = new();
     private readonly List<int> _battleMemberIndex = new();
     
-    private const int MaxBattleMemberCount = 4;
+    private const int MaxBattleMemberCount = 3;
     
     private void Awake()
     {
@@ -38,5 +38,10 @@ public class PartyManagerSingleton : MonoBehaviour
     public CharacterInfo GetPartyMember(int index)
     {
         return _companionList[Mathf.Clamp(index, 0, _companionList.Count - 1)];
+    }
+
+    public int GetCompanionLength()
+    {
+        return _companionList.Count;
     }
 }
