@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class CharacterInfoUI : MonoBehaviour
 {
-    private int _currentCharacterInfoIndex;
+    private int _currentCharacterInfoId;
     private GameObject _currentCharacterInstance;
 
     // use object pooling to reduce the number of times of ui character instantiation
     private readonly Dictionary<int, GameObject> _displayCharacterPool = new();
 
-    private const int BaseCharacterInfoIndex = 0;
+    private const int BaseCharacterInfoId = 0;
     
     // stat ui
     [SerializeField] private StatUI[] statUIs;
@@ -24,7 +24,7 @@ public class CharacterInfoUI : MonoBehaviour
     
     private void OnEnable()
     {
-        ShowCharacter(BaseCharacterInfoIndex);
+        ShowCharacter(BaseCharacterInfoId);
         companionUI.SetupCompanionInterface(ChangeCharacter);
     }
 
@@ -33,24 +33,24 @@ public class CharacterInfoUI : MonoBehaviour
         _currentCharacterInstance?.SetActive(false);
     }
 
-    private void ShowCharacter(int characterInfoIndex)
+    private void ShowCharacter(int characterInfoId)
     {
         _currentCharacterInstance?.SetActive(false);
         
-        if (!_displayCharacterPool.TryGetValue(characterInfoIndex, out _currentCharacterInstance))
+        if (!_displayCharacterPool.TryGetValue(characterInfoId, out _currentCharacterInstance))
         {
             // instantiate new character object
             _currentCharacterInstance = Instantiate(CharacterInfo.BaseCharacterUIPrefab,
                 PlayerDataManagerSingleton.Instance.PlayerLastLocation, Quaternion.identity);
             
-            _displayCharacterPool.Add(characterInfoIndex, _currentCharacterInstance);
+            _displayCharacterPool.Add(characterInfoId, _currentCharacterInstance);
         }
 
-        _currentCharacterInfoIndex = characterInfoIndex;
+        _currentCharacterInfoId = characterInfoId;
         _currentCharacterInstance.SetActive(true);
         
         // change appearance of the character object
-        CharacterInfo characterInfo = PartyManagerSingleton.Instance.GetPartyMember(_currentCharacterInfoIndex);
+        CharacterInfo characterInfo = PartyManagerSingleton.Instance.GetPartyMember(_currentCharacterInfoId);
         SpriteManager spriteManager = _currentCharacterInstance.GetComponent<SpriteManager>();
         characterInfo.ResetSprite(spriteManager);
         
@@ -62,13 +62,13 @@ public class CharacterInfoUI : MonoBehaviour
         equipmentUI.SetupEquipmentInterface(characterInfo, _currentCharacterInstance.GetComponent<SpriteManager>());
     }
 
-    private void ChangeCharacter(int newCharacterInfoIndex)
+    private void ChangeCharacter(int newCharacterInfoId)
     {
-        if (newCharacterInfoIndex == _currentCharacterInfoIndex)
+        if (newCharacterInfoId == _currentCharacterInfoId)
         {
             return;
         }
         
-        ShowCharacter(newCharacterInfoIndex);
+        ShowCharacter(newCharacterInfoId);
     }
 }

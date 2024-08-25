@@ -112,6 +112,7 @@ public class CharacterCustomization : MonoBehaviour
     [SerializeField] private SpriteManager spriteManager;
     
     // character base info
+    [SerializeField] private int baseId = 0;
     [SerializeField] private string baseName;
     [SerializeField] private StatSet baseStats;
     [SerializeField] private int baseLevel;
@@ -143,7 +144,7 @@ public class CharacterCustomization : MonoBehaviour
                     bodySpriteCustomizers[i].Index);
             }
 
-            CharacterInfo newCharacterInfo = new CharacterInfo(baseName, bodyParts, hairColorCustomizer.Index,
+            CharacterInfo newCharacterInfo = new CharacterInfo(baseId, baseName, bodyParts, hairColorCustomizer.Index,
                 eyeColorCustomizer.Index, skinColorCustomizer.Index, baseStats, baseLevel, baseWeaponId, baseArmorId);
 
             MainMenuManager.Instance.ConfirmCustomization(newCharacterInfo);

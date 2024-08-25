@@ -29,6 +29,11 @@ public class PlayerController : MonoBehaviour
     private const float EncounterCheckDistance = 5.0f;
     private const float EncounterProbability = 0.2f;
     
+    // interact
+    private const float InteractRange = 2.0f;
+    private const int NPCLayer = 1 << 6;
+    private readonly Collider[] _interactColliders = new Collider[1];
+    
     private void Awake()
     {
         _playerControls = new PlayerControls();
@@ -76,6 +81,25 @@ public class PlayerController : MonoBehaviour
         if (_isCheckBattleEncounter)
         {
             CheckBattleEncounter();
+        }
+
+        if (_playerControls.Player.Interact.WasPressedThisFrame() && !DialogManager.Instance.IsOpened)
+        {
+            if (Physics.OverlapSphereNonAlloc(transform.position, InteractRange, _interactColliders, NPCLayer) > 0)
+            {
+                foreach (Collider interactCollider in _interactColliders)
+                {
+                    if (interactCollider.TryGetComponent(out NPC npc))
+                    {
+                        npc.Interact();
+                    }
+                }
+
+                for (int i = 0; i < _interactColliders.Length; ++i)
+                {
+                    _interactColliders[i] = null;
+                }
+            }
         }
     }
 

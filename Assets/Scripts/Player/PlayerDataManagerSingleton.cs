@@ -20,6 +20,13 @@ public class PlayerDataManagerSingleton : MonoBehaviour
             DontDestroyOnLoad(gameObject);
 
             Inventory = new Inventory();
+            
+            // testing feature code
+            Inventory.AddItemToInventory(ItemType.Armor, 1);
+            Inventory.AddItemToInventory(ItemType.Armor, 2);
+            Inventory.AddItemToInventory(ItemType.Armor, 3);
+            Inventory.AddItemToInventory(ItemType.Weapon, 1);
+            Inventory.AddItemToInventory(ItemType.Weapon, 2);
         }
         else
         {

@@ -7,6 +7,9 @@ using Object = UnityEngine.Object;
 [Serializable]
 public class CharacterInfo
 {
+    [SerializeField] private int id;
+    public int Id => id;
+    
     [SerializeField] private string name;
     public string Name => name;
     
@@ -23,15 +26,15 @@ public class CharacterInfo
     private static readonly int StatIncreaseValue = 1;
 
     [SerializeField] private int level;
-    private int _exp = 0;
+    [SerializeField] private int exp = 0;
     public int Exp
     {
-        get => _exp;
+        get => exp;
         set
         {
-            _exp = value;
+            exp = value;
             
-            while (_exp >= MaxExpPerLevel)
+            while (exp >= MaxExpPerLevel)
             {
                 LevelUp();
             }
@@ -54,9 +57,10 @@ public class CharacterInfo
     public static readonly GameObject BaseCharacterUIPrefab =
         Resources.Load<GameObject>("Prefabs/Character/UICharacterBody");
     
-    public CharacterInfo(string name, BodyPart[] bodyParts, int hairColorIndex, int eyeColorIndex, int skinColorIndex,
+    public CharacterInfo(int id, string name, BodyPart[] bodyParts, int hairColorIndex, int eyeColorIndex, int skinColorIndex,
         StatSet baseStats, int level, int weaponId, int armorId)
     {
+        this.id = id;
         this.name = name;
         this.bodyParts = bodyParts;
         this.hairColorIndex = hairColorIndex;
@@ -80,11 +84,6 @@ public class CharacterInfo
     // body
     private void ApplyBodyAppearance(SpriteManager spriteManager)
     {
-        if (spriteManager == null)
-        {
-            return;
-        }
-        
         foreach (BodyPart bodyPart in bodyParts)
         {
             spriteManager.SetBodySprite(bodyPart.BodyPartType,
@@ -104,7 +103,7 @@ public class CharacterInfo
     {
         ++level;
 
-        _exp -= MaxExpPerLevel;
+        exp -= MaxExpPerLevel;
 
         _statPoint += LevelUpStatPoints;
     }

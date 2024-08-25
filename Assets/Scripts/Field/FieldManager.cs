@@ -23,7 +23,7 @@ public class FieldManager : MonoBehaviour
     private SpriteManager _playerFieldSpriteManager;
     
     // base data
-    private const int PlayerCharacterIndex = 0;
+    private const int PlayerCharacterId = 0;
 
     private void Awake()
     {
@@ -39,7 +39,7 @@ public class FieldManager : MonoBehaviour
 
     private void Start()
     {
-        _playerCharacterInfo = PartyManagerSingleton.Instance.GetPartyMember(PlayerCharacterIndex);
+        _playerCharacterInfo = PartyManagerSingleton.Instance.GetPartyMember(PlayerCharacterId);
 
         if (_playerCharacterInfo != null)
         {

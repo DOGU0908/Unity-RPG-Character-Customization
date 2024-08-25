@@ -15,19 +15,18 @@ public class CompanionUI : MonoBehaviour
     {
         ClearExistingButtons();
 
-        for (int i = 0; i < PartyManagerSingleton.Instance.GetCompanionLength(); ++i)
+        foreach (CharacterInfo characterInfo in PartyManagerSingleton.Instance.CompanionList)
         {
             GameObject companionButtonInstance = Instantiate(companionButtonPrefab, contentObject);
 
             Button button = companionButtonInstance.GetComponent<Button>();
             TextMeshProUGUI textMeshProUGUI = companionButtonInstance.GetComponentInChildren<TextMeshProUGUI>();
             
-            int characterIndex = i;
-            textMeshProUGUI.text = PartyManagerSingleton.Instance.GetPartyMember(characterIndex).Name;
+            textMeshProUGUI.text = characterInfo.Name;
             
             button.onClick.AddListener(() =>
             {
-                onButtonClicked(characterIndex);
+                onButtonClicked(characterInfo.Id);
             });
         }
     }
